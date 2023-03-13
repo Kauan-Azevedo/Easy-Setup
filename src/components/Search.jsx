@@ -44,9 +44,49 @@ export function Search() {
     );
 }
 
-// Nesse código, criamos um componente de função chamado Search que tem dois estados: searchTerm e results. O estado searchTerm representa o termo de busca digitado pelo usuário, enquanto results representa os resultados da busca.
-// Também criamos dois métodos: handleChange e handleSubmit. O método handleChange é responsável por atualizar o estado searchTerm quando o usuário digita algo no campo de busca. O método handleSubmit é responsável por fazer a busca na API do Mercado Livre quando o usuário clica no botão "Buscar".
-// Ao fazer a busca na API do Mercado Livre, usamos o método fetch para fazer uma requisição assíncrona e obter os resultados. Em seguida, atualizamos o estado results com os resultados da busca.
-// Por fim, no retorno do componente, temos um formulário com um campo de texto e um botão de busca. Também temos uma lista que exibe os resultados da busca.
-// Passo 3: Renderização do componente principal
-// Agora, vamos criar um componente principal chamado App que irá renderizar o componente Search. Para isso, vamos editar o arquivo src/App.js:
+// Response
+// {
+//   "site_id": "MLB",
+//   "country_default_time_zone": "GMT-03:00",
+//   "query": "${searchTerm}",
+//   "paging": {},
+//   "results": [
+//     {
+//       "id": "MLB2783994563",
+//       "title": "Gel Termo Ativo Medida Pimenta Negra Fluido Massagem Redutor",
+//       "condition": "new",
+//       "thumbnail_id": "605954-MLB45304866928_032021",
+//       "catalog_product_id": "MLB19542967",
+//       "listing_type_id": "gold_special",
+//       "permalink": "https://www.mercadolivre.com.br/gel-termo-ativo-medida-pimenta-negra-fluido-massagem-redutor/p/MLB19542967",
+//       "buying_mode": "buy_it_now",
+//       "site_id": "MLB",
+//       "category_id": "MLB1262",
+//       "domain_id": "MLB-BODY_SKIN_CARE_PRODUCTS",
+//       "thumbnail": "http://http2.mlstatic.com/D_605954-MLB45304866928_032021-I.jpg",
+//       "currency_id": "BRL",
+//       "order_backend": 1,
+//       "price": 41.84,
+//       "original_price": 44.99,
+//       "sale_price": null,
+//       "sold_quantity": 50,
+//       "available_quantity": 1,
+//       "official_store_id": null,
+//       "use_thumbnail_id": true,
+//       "accepts_mercadopago": true,
+//       "tags": [],
+//       "shipping": {},
+//       "stop_time": "2042-08-28T04:00:00.000Z",
+//       "seller": {},
+//       "seller_address": {},
+//       "address": {},
+//       "attributes": [],
+//       "installments": {},
+//       "winner_item_id": null,
+//       "catalog_listing": true,
+//       "discounts": null,
+//       "promotions": [
+//       ],
+//       "inventory_id": "KLYO14817"
+//       },
+// }
