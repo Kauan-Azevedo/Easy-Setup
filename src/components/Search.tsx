@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { iResult } from "../interfaces/iResult";
+import {
+    Button,
+    CircularProgress,
+    Container,
+    TextField,
+    Card,
+    CardContent,
+    CardActions,
+    Link,
+    Typography,
+    Grid
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 export function Search() {
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.currentTarget.value);
     };
 
@@ -22,26 +35,56 @@ export function Search() {
     };
 
     return (
-        <div>
+        <Container maxWidth="sm">
             <form onSubmit={handleSubmit}>
-                <input type="text" value={searchTerm} onChange={handleChange} />
-                <button type="submit">Buscar</button>
+                <TextField
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleChange}
+                    label={<SearchIcon />}
+                />
+                <Button type="submit" variant="contained">
+                    Buscar
+                </Button>
             </form>
+
             {isLoading ? (
-                <p>Carregando...</p>
+                <CircularProgress />
             ) : (
-                <ul>
-                    {/* nao me mate gabriel */}
-                    {results.map((result: iResult) => (
-                        <li key={result.id}>
-                            <img src={result.thumbnail} alt={result.title} />
-                            <p>{result.title}</p>
-                            <p>{result.price}</p>
-                            <a href={result.permalink}>Ver mais</a>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                        <Grid rowSpacing={2} columnSpacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        {results.map((result: iResult) => (
+                            <Grid key={result.id} sx={{
+                                border: 1,
+                                borderRadius: 1
+                            }}>
+                                <Card>
+                                    <CardContent>
+                                        <img
+                                            src={result.thumbnail}
+                                            alt={result.title}
+                                        />
+                                        <Typography variant="h2" sx={{
+                                            fontSize: '24px',
+                                            fontWeight: 'bold'
+                                        }}>{result.title}</Typography>
+                                        <Typography variant="h5" component="h5" color="green" sx={{
+                                            float: 'right'
+                                        }}>R$ {result.price}</Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button variant="contained" color="success">
+                                            <Link href={result.permalink} target="_blank" rel="noreferrer" color="#fff" underline="none">
+                                                Ver mais
+                                            </Link>
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </>
             )}
-        </div>
+        </Container>
     );
 }
