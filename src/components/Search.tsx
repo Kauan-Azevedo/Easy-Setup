@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { iResult } from "../interfaces/iResult";
-import { Button, CircularProgress, Container, TextField } from "@mui/material";
+import {
+    Button,
+    CircularProgress,
+    Container,
+    TextField,
+    Card,
+    CardContent,
+    CardActions,
+    Link
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import NavigationIcon from '@mui/icons-material/Navigation';
-import { Fab } from "@mui/material";
 
 export function Search() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -45,15 +52,23 @@ export function Search() {
                 <>
                     <ul>
                         {results.map((result: iResult) => (
-                            <li key={result.id}>
-                                <img
-                                    src={result.thumbnail}
-                                    alt={result.title}
-                                />
-                                <p>{result.title}</p>
-                                <p>{result.price}</p>
-                                <a href={result.permalink}>Ver mais</a>
-                            </li>
+                            <Card key={result.id}>
+                                <CardContent>
+                                    <img
+                                        src={result.thumbnail}
+                                        alt={result.title}
+                                    />
+                                    <p>{result.title}</p>
+                                    <p>{result.price}</p>
+                                </CardContent>
+                                <CardActions>
+                                <Button variant="contained" color="success">
+                                    <Link href={result.permalink} target="_blank" color="#fff" underline="none">
+                                        Ver mais
+                                    </Link>
+                                </Button>
+                                </CardActions>
+                            </Card>
                         ))}
                     </ul>
                 </>
