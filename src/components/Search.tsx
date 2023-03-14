@@ -63,7 +63,7 @@ export function Search() {
                                 </CardContent>
                                 <CardActions>
                                 <Button variant="contained" color="success">
-                                    <Link href={result.permalink} target="_blank" color="#fff" underline="none">
+                                    <Link href={result.permalink} target="_blank" rel="noreferrer" color="#fff" underline="none">
                                         Ver mais
                                     </Link>
                                 </Button>
