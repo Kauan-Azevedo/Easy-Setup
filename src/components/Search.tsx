@@ -5,12 +5,12 @@ export function Search() {
     const [results, setResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value);
+    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+        setSearchTerm(e.currentTarget.value);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setIsLoading(true);
         const response = await fetch(
             `https://api.mercadolibre.com/sites/MLB/search?q=${searchTerm}`
@@ -30,7 +30,8 @@ export function Search() {
                 <p>Carregando...</p>
             ) : (
                 <ul>
-                    {results.map((result) => (
+                    {/* nao me mate gabriel */}
+                    {results.map((result: any) => (
                         <li key={result.id}>
                             <img src={result.thumbnail} alt={result.title} />
                             <p>{result.title}</p>
