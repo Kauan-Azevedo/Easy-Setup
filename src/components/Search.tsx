@@ -8,7 +8,9 @@ import {
     Card,
     CardContent,
     CardActions,
-    Link
+    Link,
+    Typography,
+    Grid
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -50,7 +52,7 @@ export function Search() {
                 <CircularProgress />
             ) : (
                 <>
-                    <ul>
+                        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {results.map((result: iResult) => (
                             <Card key={result.id}>
                                 <CardContent>
@@ -58,8 +60,9 @@ export function Search() {
                                         src={result.thumbnail}
                                         alt={result.title}
                                     />
-                                    <p>{result.title}</p>
-                                    <p>{result.price}</p>
+                                    <Typography variant="h2" style={{ fontSize: '24px',  fontWeight: 'bold'}}>{result.title}</Typography>
+                                    <Typography variant="h5" component="h5" color="green" style={{float: 'right'}}>R$ {result.price}</Typography>
+
                                 </CardContent>
                                 <CardActions>
                                 <Button variant="contained" color="success">
@@ -70,7 +73,7 @@ export function Search() {
                                 </CardActions>
                             </Card>
                         ))}
-                    </ul>
+                    </Grid>
                 </>
             )}
         </Container>
