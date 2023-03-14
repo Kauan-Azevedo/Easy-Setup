@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { iResult } from "../interfaces/iResult";
-import { Box, Button, CircularProgress, TextField } from "@mui/material";
-
+import { Button, CircularProgress, Container, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import NavigationIcon from '@mui/icons-material/Navigation';
+import { Fab } from "@mui/material";
 
 export function Search() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -24,26 +26,38 @@ export function Search() {
     };
 
     return (
-        <Box>
+        <Container maxWidth="sm">
             <form onSubmit={handleSubmit}>
-                <TextField type="text" value={searchTerm} onChange={handleChange} label="Pesquisar..."/>
-                <Button type="submit" variant="contained">Buscar</Button>
+                <TextField
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleChange}
+                    label={<SearchIcon />}
+                />
+                <Button type="submit" variant="contained">
+                    Buscar
+                </Button>
             </form>
+
             {isLoading ? (
                 <CircularProgress />
             ) : (
-                <ul>
-                    {/* nao me mate gabriel */}
-                    {results.map((result: iResult) => (
-                        <li key={result.id}>
-                            <img src={result.thumbnail} alt={result.title} />
-                            <p>{result.title}</p>
-                            <p>{result.price}</p>
-                            <a href={result.permalink}>Ver mais</a>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    <ul>
+                        {results.map((result: iResult) => (
+                            <li key={result.id}>
+                                <img
+                                    src={result.thumbnail}
+                                    alt={result.title}
+                                />
+                                <p>{result.title}</p>
+                                <p>{result.price}</p>
+                                <a href={result.permalink}>Ver mais</a>
+                            </li>
+                        ))}
+                    </ul>
+                </>
             )}
-        </Box>
+        </Container>
     );
 }
