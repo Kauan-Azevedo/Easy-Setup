@@ -52,26 +52,35 @@ export function Search() {
                 <CircularProgress />
             ) : (
                 <>
-                        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        <Grid rowSpacing={2} columnSpacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {results.map((result: iResult) => (
-                            <Card key={result.id}>
-                                <CardContent>
-                                    <img
-                                        src={result.thumbnail}
-                                        alt={result.title}
-                                    />
-                                    <Typography variant="h2" style={{ fontSize: '24px',  fontWeight: 'bold'}}>{result.title}</Typography>
-                                    <Typography variant="h5" component="h5" color="green" style={{float: 'right'}}>R$ {result.price}</Typography>
-
-                                </CardContent>
-                                <CardActions>
-                                <Button variant="contained" color="success">
-                                    <Link href={result.permalink} target="_blank" rel="noreferrer" color="#fff" underline="none">
-                                        Ver mais
-                                    </Link>
-                                </Button>
-                                </CardActions>
-                            </Card>
+                            <Grid key={result.id} sx={{
+                                border: 1,
+                                borderRadius: 1
+                            }}>
+                                <Card>
+                                    <CardContent>
+                                        <img
+                                            src={result.thumbnail}
+                                            alt={result.title}
+                                        />
+                                        <Typography variant="h2" sx={{
+                                            fontSize: '24px',
+                                            fontWeight: 'bold'
+                                        }}>{result.title}</Typography>
+                                        <Typography variant="h5" component="h5" color="green" sx={{
+                                            float: 'right'
+                                        }}>R$ {result.price}</Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button variant="contained" color="success">
+                                            <Link href={result.permalink} target="_blank" rel="noreferrer" color="#fff" underline="none">
+                                                Ver mais
+                                            </Link>
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
                         ))}
                     </Grid>
                 </>
