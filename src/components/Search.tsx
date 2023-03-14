@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { iResult } from "../interfaces/iResult";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
+
 
 export function Search() {
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.currentTarget.value);
     };
 
@@ -22,13 +24,13 @@ export function Search() {
     };
 
     return (
-        <div>
+        <Box>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={searchTerm} onChange={handleChange} />
-                <button type="submit">Buscar</button>
+                <TextField type="text" value={searchTerm} onChange={handleChange} label="Pesquisar..."/>
+                <Button type="submit" variant="contained">Buscar</Button>
             </form>
             {isLoading ? (
-                <p>Carregando...</p>
+                <CircularProgress />
             ) : (
                 <ul>
                     {/* nao me mate gabriel */}
@@ -42,6 +44,6 @@ export function Search() {
                     ))}
                 </ul>
             )}
-        </div>
+        </Box>
     );
 }
